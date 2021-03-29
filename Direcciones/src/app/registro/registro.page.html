@@ -1,0 +1,56 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title> Registrar Lugar Turistico</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <agm-map [latitude]='lat' [longitude]='long' (centerChange)="newSitio($event)" >
+    <agm-marker 
+        [latitude]="lat" 
+        [longitude]="long"></agm-marker>
+
+    <agm-marker [latitude]="currentLocation.latitude" [longitude]="currentLocation.longitude" [iconUrl]="icons.client" [markerDraggable]="false">
+        <agm-info-window><strong>Mi posición</strong></agm-info-window>
+    </agm-marker>
+
+    <agm-marker [latitude]="centerLocation.latitude" [longitude]="centerLocation.longitude" [iconUrl]="icons.pointer" #centerPosition>
+      <agm-info-window><strong>{{centerLocation.address}}</strong></agm-info-window>
+    </agm-marker>
+    <agm-marker *ngFor="let dir of direcciones" [latitude]="dir.latitud" [longitude]="dir.longitud" [iconUrl]="icons.client">
+      <agm-info-window>{{dir.direccion}}</agm-info-window>
+    </agm-marker>
+</agm-map>
+
+{{centerLocation | json}}
+
+<ion-item>
+  <ion-label>Tipo</ion-label>
+  <ion-select [(ngModel)]="direccion.tipo">
+    <ion-select-option value="parque">Parque</ion-select-option>
+    <ion-select-option value="iglesia">Iglesia</ion-select-option>
+    <ion-select-option value="museo">Museo</ion-select-option>
+    <ion-select-option value="mirador">Mirador</ion-select-option>
+    <ion-select-option value="otro">Otro</ion-select-option>
+  </ion-select>
+</ion-item>
+<ion-item>
+  <ion-label>Nombre</ion-label>
+  <ion-input [(ngModel)]="direccion.nombre"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label>Descripcion</ion-label>
+  <ion-input [(ngModel)]="direccion.descripcion"></ion-input>
+</ion-item>
+<ion-item>
+  <input type="file" name="inputFile" (change)="chooseFile($event)" required>
+</ion-item>
+<ion-item> 
+  <ion-button shape="round" fill="outline" expand="full" (click) ="registrarLugar()">Registrar</ion-button>
+</ion-item>
+
+</ion-content>

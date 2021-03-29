@@ -1,0 +1,44 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title> Buscar lugar</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>Buscar</ion-label>
+    <ion-input [(ngModel)]="nombre"></ion-input>
+  </ion-item>
+  <ion-item> 
+    <ion-button shape="round" fill="outline" expand="full" (click) ="buscar()">Buscar</ion-button>
+  </ion-item>
+
+
+  <ion-card *ngIf="direccion" >
+   <ion-item>
+    <ion-row class="catagory">
+      <ion-col>
+        <img src="{{direccion[0].url}}" alt="foodname">
+      </ion-col>
+      <ion-col col-6>
+        <p class="item-name">{{direccion[0].nombre}}</p>
+        <p class="item-detail" text-wrap>
+          <span>{{direccion[0].direccion}}</span>
+          <br>
+          <span>tipo: {{direccion[0].tipo}}</span>
+        </p>
+
+        <p class="item-detail">
+          <span class="item-price">{{direccion[0].descripcion}}
+          </span>
+      </p>
+
+      </ion-col>
+    </ion-row>
+   </ion-item>
+  </ion-card>
+
+</ion-content>

@@ -1,0 +1,7 @@
+{
+  "name": "Direcciones",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
